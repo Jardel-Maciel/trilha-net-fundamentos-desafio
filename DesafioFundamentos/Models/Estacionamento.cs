@@ -45,11 +45,19 @@ namespace DesafioFundamentos.Models
             {
                 Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
 
+
                 // TODO: Pedir para o usuário digitar a quantidade de horas que o veículo permaneceu estacionado,
                 // TODO: Realizar o seguinte cálculo: "precoInicial + precoPorHora * horas" para a variável valorTotal                
                 // *IMPLEMENTE AQUI*
-                int horas = Convert.ToInt32(Console.ReadLine());
+                string inputHoras = Console.ReadLine();
+                int horas;
+                if (!int.TryParse(inputHoras, out horas) || horas < 0)
+                {
+                    Console.WriteLine("Quantidade de horas inválida, tente novamente!");
+                    return;
+                }
                 decimal valorTotal = precoInicial + precoPorHora * horas;
+
 
                 // TODO: Remover a placa digitada da lista de veículos
                 veiculos.RemoveAll(x => x.ToUpper() == placa.ToUpper());
